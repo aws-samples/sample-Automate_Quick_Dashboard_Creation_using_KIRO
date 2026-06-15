@@ -1,0 +1,59 @@
+# ===========================
+# Internal/submission docs (not for public repo)
+# ===========================
+apj-pattern-submission.md
+quicksight-agentic-dashboard-guide.md
+quicksight-architecture.png
+
+# ===========================
+# Security: Credentials & Secrets
+# ===========================
+config/datasource.local.json
+*.env
+.env.*
+*.pem
+*.key
+
+# ===========================
+# Generated output (session-specific, contains account IDs)
+# ===========================
+output/
+
+# ===========================
+# Internal documentation (business IP)
+# ===========================
+IADP/
+docs/
+
+# ===========================
+# Python
+# ===========================
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# ===========================
+# OS files
+# ===========================
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# ===========================
+# IDE
+# ===========================
+.idea/
+.vscode/
+*.iml
+
+# ===========================
+# Schema discovery (contains real cluster/DB info)
+# ===========================
+output/schema-discovery.json
+output/deployment-info.json

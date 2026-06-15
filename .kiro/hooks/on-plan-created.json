@@ -1,0 +1,13 @@
+{
+  "name": "Run Dataset Builder + Dashboard Designer",
+  "version": "1.0.0",
+  "description": "When Agent 1 creates the plan, automatically run Agent 2 (dataset builder) and Agent 3 (dashboard designer)",
+  "when": {
+    "type": "fileEdited",
+    "patterns": ["output/plan.json"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "The plan has been created at output/plan.json. Now execute two steps in sequence:\n\n1. DATASET BUILDER: Read output/plan.json and agents/agent2-dataset-builder.md. Follow the agent2 instructions to create output/dataset-config.json with direct Redshift table references and QuickSight-native joins. No SQL.\n\n2. DASHBOARD DESIGNER: Read output/plan.json, output/dataset-config.json, and agents/agent3-dashboard-designer.md. Follow the agent3 instructions to create output/dashboard-definition.json with the complete AnalysisDefinition (visuals, layout, parameters, filters). Use the patterns from .kiro/steering/quicksight-visuals.md.\n\nAfter both files are created, tell the user the dashboard is ready and show them how to deploy with: python scripts/deploy.py --cleanup"
+  }
+}

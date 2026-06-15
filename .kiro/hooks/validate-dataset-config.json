@@ -1,0 +1,13 @@
+{
+  "name": "Validate Dataset Config",
+  "version": "1.0.0",
+  "description": "Validates output/dataset-config.json for known QuickSight deployment errors after creation",
+  "when": {
+    "type": "fileEdited",
+    "patterns": ["output/dataset-config.json"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "The dataset config was just created at output/dataset-config.json. Run the QuickSight validator checks on it:\n\n1. Table keys must be alphanumeric only (no hyphens, no underscores). Bad: 'dim-product'. Good: 'dimproduct'.\n2. Join left/right values must match table keys.\n3. Join columns must exist in their respective tables.\n4. PaginationConfiguration PageSize must be 100, 500, 1000, or 10000.\n\nIf any check fails, fix the issue directly in the file and report what was changed. If all pass, say 'Dataset config validated — no issues found.'"
+  }
+}

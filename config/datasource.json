@@ -1,0 +1,18 @@
+{
+  "aws_account_id": "<YOUR_AWS_ACCOUNT_ID>",
+  "region": "<YOUR_REGION>",
+  "quicksight_user_arn": "arn:aws:quicksight:<REGION>:<ACCOUNT_ID>:user/default/<YOUR_QUICKSIGHT_USERNAME>",
+
+  "redshift": {
+    "cluster_id": "<YOUR_REDSHIFT_CLUSTER_ID>",
+    "host": "<YOUR_REDSHIFT_ENDPOINT>",
+    "port": 5439,
+    "database": "<YOUR_DATABASE>",
+    "db_user": "<YOUR_DB_USER>",
+    "credentials_secret_arn": "arn:aws:secretsmanager:<REGION>:<ACCOUNT_ID>:secret:<YOUR_SECRET_NAME>",
+    "vpc_connection_arn": "arn:aws:quicksight:<REGION>:<ACCOUNT_ID>:vpcConnection/<YOUR_VPC_CONNECTION_ID>"
+  },
+
+  "schema": "consumer_360_secure",
+  "datasource_id": "consumer360-redshift-ds"
+}

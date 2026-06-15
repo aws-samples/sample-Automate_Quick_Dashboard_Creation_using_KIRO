@@ -1,0 +1,13 @@
+{
+  "name": "Validate Dashboard Definition",
+  "version": "1.0.0",
+  "description": "Validates output/dashboard-definition.json for known QuickSight API errors after creation",
+  "when": {
+    "type": "fileEdited",
+    "patterns": ["output/dashboard-definition.json"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "The dashboard definition was just created at output/dashboard-definition.json. Run these QuickSight validator checks:\n\n1. definition must NOT contain DataSetIdentifierDeclarations (deploy script injects real ARNs automatically).\n2. DateTimePicker controls cannot reference TimeRangeFilter. Valid: RelativeDateTime→RelativeDatesFilter, Dropdown→CategoryFilter.\n3. Every DateDimensionField must have HierarchyId, with matching DateTimeHierarchy in ColumnHierarchies (except TableVisual/InsightVisual).\n4. No DonutChartVisual — use PieChartVisual with DonutOptions.\n5. TableVisual must not have ColumnHierarchies.\n6. All GridLayout ElementIds must reference existing visuals or controls.\n7. All SheetControlLayouts ElementIds must reference existing controls.\n8. CategoryFilter must not have both SelectAllOptions and CategoryValues.\n9. All FieldIds must be unique across visuals.\n10. All VisualIds must be unique.\n11. STRING columns (check types in output/dataset-config.json) must use CategoricalMeasureField with COUNT or DISTINCT_COUNT. NumericalMeasureField is only for INTEGER/DECIMAL columns. Cross-reference every measure field's column against dataset-config.json types.\n\nIf any check fails, fix the issue directly in the file and report what was changed. If all pass, say 'Dashboard definition validated — no issues found.'"
+  }
+}
